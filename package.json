@@ -1,0 +1,24 @@
+{
+  "name": "pokedex-backend",
+  "version": "1.0.0",
+  "description": "Back-end files for pokedex application",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EliasMatteo/PokeDex-Backend.git"
+  },
+  "author": "Elias Matteo Flamenco-Solito",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EliasMatteo/PokeDex-Backend/issues"
+  },
+  "homepage": "https://github.com/EliasMatteo/PokeDex-Backend#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "mongodb": "^4.4.0",
+    "pkg": "^5.5.2"
+  }
+}
