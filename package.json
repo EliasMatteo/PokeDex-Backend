@@ -4,7 +4,7 @@
   "description": "Back-end files for pokedex application",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -17,8 +17,14 @@
   },
   "homepage": "https://github.com/EliasMatteo/PokeDex-Backend#readme",
   "dependencies": {
+    "brcypt": "^1.0.1",
+    "cors": "^2.8.5",
     "express": "^4.17.3",
     "mongodb": "^4.4.0",
+    "mongoose": "^6.2.4",
     "pkg": "^5.5.2"
+  },
+  "engines": {
+    "node": "16.14.0"
   }
 }
