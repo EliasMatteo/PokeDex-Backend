@@ -24,6 +24,8 @@ app.use(
   })
 );
 
+app.use(express.static(__dirname + "/public"));
+
 app.get("/", (req, res) => {
   res.status(200).json({ phrase: "hello PokeDex Test!" });
   res.status(503).send(console.log("why isnt this working"));
