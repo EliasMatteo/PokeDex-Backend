@@ -8,7 +8,7 @@ const userSchema = new Schema(
       require: true,
       default: "name",
     },
-    emai: {
+    email: {
       type: String,
       require: true,
       default: "email",
@@ -18,10 +18,14 @@ const userSchema = new Schema(
       require: true,
       default: "pass",
     },
+    favourites: {
+      type: String,
+      required: false,
+    },
   },
   {
     timeseries: true,
     Collection: "users",
   }
 );
-module.exports = mongoose.model("user", userSchema);
+module.exports = mongoose.model("User", userSchema);
