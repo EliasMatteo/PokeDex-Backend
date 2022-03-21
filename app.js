@@ -7,7 +7,13 @@ const config = require("./config");
 const authRoutes = require("./routes/authRoutes");
 
 //app
-const app = express();
+app.use(express.json());
+
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
 
 //Port specfication
 // const port = 5000;
