@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const config = require("./config");
 //import routes
 const authRoutes = require("./routes/authRoutes");
-const { db } = require("./models/User");
+
 //app
 const app = express();
 
@@ -20,10 +20,15 @@ app.use(authRoutes);
 /*--------------------*/
 //App code
 
+app.get("/", (req, res) => {
+  res.status(200).json({ phrase: "hello PokeDex Test!" });
+  res.status(503).send(console.log("why isnt this working"));
+});
+
 app.use(express.static(__dirname + "/public"));
 
 // DB connections and ports
-const PORT = process.env.PORT || 5000;
+// const PORT = process.env.PORT || 5000;
 
 app.listen(process.env.PORT || 5000, () => {
   console.log("work please");
