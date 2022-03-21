@@ -1,7 +1,8 @@
 const user = require("../models/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const { createJWT } = require("../utils/authUtils");
+// const { createJWT } = require("../utils/authUtils");
+const createJWT = require('../utils/authUtils.js')
 const emailRegexp =
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 exports.signup = (req, res, next) => {
@@ -81,7 +82,7 @@ exports.signin = (req, res) => {
     errors.push({ email: "invalid email" });
   }
   if (!password) {
-    errors.push({ passowrd: "required" });
+    errors.push({ password: "required" });
   }
   if (errors.length > 0) {
     return res.status(422).json({ errors: errors });
@@ -108,7 +109,7 @@ exports.signin = (req, res) => {
               process.env.TOKEN_SECRET,
               (err, decoded) => {
                 if (err) {
-                  res.status(500).json({ erros: err });
+                  res.status(500).json({ errors: "token error" });
                 }
                 if (decoded) {
                   return res.status(200).json({
@@ -121,11 +122,11 @@ exports.signin = (req, res) => {
             );
           })
           .catch((err) => {
-            res.status(500).json({ erros: err });
+            res.status(500).json({ errors: "err 1" });
           });
       }
     })
     .catch((err) => {
-      res.status(500).json({ erros: err });
+      res.status(500).json({ errors: "err 2" });
     });
 };
