@@ -8,13 +8,13 @@ const authRoutes = require("./routes/authRoutes");
 const app = express();
 
 //app
-app.use(express.json());
+app.use(express);
 
-app.use(
-  express.urlencoded({
-    extended: true,
-  })
-);
+// app.use(
+//   express.urlencoded({
+//     extended: true,
+//   })
+// );
 
 //Port specfication
 // const port = 5000;
