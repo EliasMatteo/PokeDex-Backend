@@ -1,8 +1,8 @@
 const user = require("../models/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-// const { createJWT } = require("../utils/authUtils");
-const createJWT = require('../utils/authUtils.js')
+const { createJWT } = require("../utils/authUtils");
+// const createJWT = require('../utils/authUtils.js')
 const emailRegexp =
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
