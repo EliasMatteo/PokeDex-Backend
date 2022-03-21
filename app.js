@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const config = require("./config");
 //import routes
 const authRoutes = require("./routes/authRoutes");
+const app = express();
 
 //app
 app.use(express.json());
