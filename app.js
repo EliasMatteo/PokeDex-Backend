@@ -6,6 +6,7 @@ const config = require("./config");
 //import routes
 const authRoutes = require("./routes/authRoutes");
 const app = express();
+require('dotenv').config();
 
 //app
 
