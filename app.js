@@ -8,7 +8,7 @@ const authRoutes = require("./routes/authRoutes");
 const app = express();
 
 //app
-app.use(express);
+
 
 // app.use(
 //   express.urlencoded({
@@ -28,8 +28,7 @@ app.use(authRoutes);
 //App code
 
 app.get("/", (req, res) => {
-  res.status(200).json({ phrase: "hello PokeDex Test!" });
-  res.status(503).send(console.log("why isnt this working"));
+  res.status(200).json("hello PokeDex Test!");
 });
 
 app.use(express.static(__dirname + "/public"));
