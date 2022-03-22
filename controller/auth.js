@@ -40,10 +40,10 @@ exports.signup = (req, res, next) => {
           .json({ errors: [{ user: "email already exists" }] });
       } else {
         const user = new User({
-          name: name,
-          email: email,
-          password: password,
-          favourites: favourites,
+          name: req.body.name,
+          email: req.body.email,
+          password: req.body.password,
+          favourites: req.body.favourites,
         });
         bcrypt.genSalt(10, function (err, salt) {
           bcrypt.hash(password, salt, function (err, hash) {
