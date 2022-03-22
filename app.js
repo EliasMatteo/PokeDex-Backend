@@ -3,13 +3,12 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const config = require("./config");
+require("dotenv").config();
 //import routes
 const authRoutes = require("./routes/authRoutes");
 const app = express();
-require('dotenv').config();
 
 //app
-
 
 // app.use(
 //   express.urlencoded({

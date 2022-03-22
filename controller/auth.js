@@ -1,8 +1,8 @@
-const user = require("../models/user");
+const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { createJWT } = require("../utils/authUtils");
-// const createJWT = require('../utils/authUtils.js')
+
 const emailRegexp =
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
@@ -32,15 +32,14 @@ exports.signup = (req, res, next) => {
   if (errors.length > 0) {
     return res.status(422).json({ errors: errors });
   }
-  user
-    .findOne({ email: email })
+  User.findOne({ email: email })
     .then((user) => {
       if (user) {
         return res
           .status(422)
           .json({ errors: [{ user: "email already exists" }] });
       } else {
-        const user = new user({
+        const user = new User({
           name: name,
           email: email,
           password: password,
@@ -88,8 +87,7 @@ exports.signin = (req, res) => {
   if (errors.length > 0) {
     return res.status(422).json({ errors: errors });
   }
-  user
-    .findOne({ email: email })
+  User.findOne({ email: email })
     .then((user) => {
       if (!user) {
         return res.status(404).json({
