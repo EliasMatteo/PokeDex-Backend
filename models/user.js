@@ -19,7 +19,7 @@ const userSchema = new Schema(
       default: "pass",
     },
     favourites: {
-      type: [String],
+      type: String,
       required: false,
     },
   },

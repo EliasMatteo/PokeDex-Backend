@@ -131,3 +131,25 @@ exports.signin = (req, res) => {
       res.status(500).json({ errors: "err 2" });
     });
 };
+
+exports.updatefav = (req, res) => {
+  user.findByIdAndUpdate(req.body.id, req.body, (err, user) => {
+    if (err) return res.status(404).send("favourites not found")
+
+    res.json(updatedfav)
+  })
+
+  console.log(res)
+}
+
+// exports.updatefav = (req, res) => {
+//   user.findById(req.body.id, (err, user)=>{
+//     user.favourites = req.body.favourites
+
+//     user.safe((err, updatedfav)=>{
+//       if(err) return res.status(404).send("favourites not found")
+
+//       res.json(updatedfav)
+//     })
+//   })
+// }
