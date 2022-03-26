@@ -37,7 +37,7 @@ app.use(express.static(__dirname + "/public"));
 // const PORT = process.env.PORT || 5000;
 
 app.listen(process.env.PORT || 5000, () => {
-  console.log("work please");
+  console.log("connected");
 });
 
 mongoose.connect(config.MONGODB_URL, () => {
