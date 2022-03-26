@@ -23,9 +23,6 @@ const userSchema = new Schema(
       required: false,
     },
   },
-  {
-    timeseries: true,
-    Collection: "users",
-  }
+  { collection: "users" }
 );
 module.exports = mongoose.model("User", userSchema);
