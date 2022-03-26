@@ -112,3 +112,33 @@ exports.signin = (req, res) => {
       res.status(500).json({ errors: "err 2" });
     });
 };
+
+// exports.updatefav = (req, res) => {
+//   let { favourites } = req.body;
+//   let errors = [];
+
+//   user
+//     .findByIdAndUpdate(req.body.id, req.body, (err, user) => {
+//       if (err) return res.status(404).send("favourites not found")
+
+//       res.json(updatedfav)
+//     })
+
+//   console.log(res)
+// }
+
+exports.updatefav = (req, res) => {
+  let { favourites } = req.body;
+  let errors = [];
+
+  User
+    .findById(req.body.id, (err, user) => {
+      user.favourites = req.body.favourites
+
+      user.save((err, updatedfav) => {
+        if (err) return res.status(404).send("favourites not found")
+
+        res.json(updatedfav)
+      })
+    })
+}
