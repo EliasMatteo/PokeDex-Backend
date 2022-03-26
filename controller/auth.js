@@ -6,7 +6,7 @@ const { createJWT } = require("../utils/authUtils");
 const emailRegexp =
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
-exports.signup = (req, res, next) => {
+exports.signup = async (req, res) => {
   let { name, email, password, password_confirmation, favourites } = req.body;
   let errors = [];
   if (!name) {
@@ -32,45 +32,27 @@ exports.signup = (req, res, next) => {
   if (errors.length > 0) {
     return res.status(422).json({ errors: errors });
   }
-  User.findOne({ email: email })
-    .then((user) => {
-      if (user) {
-        return res
-          .status(422)
-          .json({ errors: [{ user: "email already exists" }] });
-      } else {
-        const user = new User({
-          name: req.body.name,
-          email: req.body.email,
-          password: req.body.password,
-          favourites: req.body.favourites,
+  console.log(req.body);
+  User.findOne({ email: email }).then(async (user) => {
+    if (user) {
+      return res
+        .status(422)
+        .json({ errors: [{ user: "email already exists" }] });
+    } else {
+      const newPassword = await bcrypt.hash(req.body.password, 10);
+      await User.create({
+        name: req.body.name,
+        email: req.body.email,
+        password: newPassword,
+        favourites: req.body.favourites,
+      }).then((response) => {
+        res.status(200).json({
+          success: true,
+          result: response,
         });
-        bcrypt.genSalt(10, function (err, salt) {
-          bcrypt.hash(password, salt, function (err, hash) {
-            if (err) throw err;
-            user.password = hash;
-            user
-              .save()
-              .then((response) => {
-                res.status(200).json({
-                  success: true,
-                  result: response,
-                });
-              })
-              .catch((err) => {
-                res.status(500).json({
-                  errors: [{ error: err }],
-                });
-              });
-          });
-        });
-      }
-    })
-    .catch((err) => {
-      res.status(500).json({
-        errors: [{ error: "Something went wrong" }],
       });
-    });
+    }
+  });
 };
 exports.signin = (req, res) => {
   let { email, password } = req.body;
@@ -87,6 +69,7 @@ exports.signin = (req, res) => {
   if (errors.length > 0) {
     return res.status(422).json({ errors: errors });
   }
+
   User.findOne({ email: email })
     .then((user) => {
       if (!user) {
